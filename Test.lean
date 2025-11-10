@@ -730,3 +730,25 @@ theorem simple4 (a b c : Nat) : a + (b * c) = (b * c) + a := by
   Nat.add_left_comm,
   Nat.add_right_comm
 ]
+
+----------------- SECOND EXAMPLE --------------------------------------
+
+-- This verifies that the theorem can't be solved by unrestricted simp
+theorem second_simple (a b : Nat) : a ^ (b + 2) = a ^ b * a * a := by
+  simp
+
+-- This is the solution using the premises / lemmas that were retrieved with 
+-- the embedding model. It includes Nat.pow_succ, Nat.mul_comm, and other redundant lemmas
+theorem second_simple2 (a b : Nat) : a ^ (b + 2) = a ^ b * a * a := by
+  simp only [
+  Nat.pow_add,
+  Nat.add_mul,
+  Nat.right_distrib,
+  Nat.mul_add,
+  Nat.succ_mul,
+  Nat.pow_succ,
+  Nat.mul_comm,
+  Nat.mul_assoc,
+  Nat.pow_add',
+  Nat.left_distrib
+]
