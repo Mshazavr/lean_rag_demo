@@ -1,12 +1,17 @@
+-- A simple theorem that can be solved with the simp tactic and the Nat.add_comm lemma
 theorem simple (a b c : Nat) : a + (b * c) = (b * c) + a := by
   simp only [Nat.add_comm]
 
+-- This verifies that the theorem can't be solved by rfl alone
 theorem simple1 (a b c : Nat) : a + (b * c) = (b * c) + a := by
   rfl
 
+-- This verifies that the theorem can't be solved by unrestricted simp
 theorem simple2 (a b c : Nat) : a + (b * c) = (b * c) + a := by
   simp
 
+-- This verifies that the theorem can't be solved by passing all the Nat lemmas to simp,
+-- even thought Nat.add_comm is one of the lemmas we supply
 theorem simple3 (a b c : Nat) : a + (b * c) = (b * c) + a := by
   simp only [
   Nat.rec_eq_recCompiled,
@@ -710,6 +715,8 @@ theorem simple3 (a b c : Nat) : a + (b * c) = (b * c) + a := by
   Nat.dfoldRev_add
 ]
 
+-- This is the solution using the premises / lemmas that were retrieved with 
+-- the embedding model. It includes Nat.add_comm and other redundant lemmas
 theorem simple4 (a b c : Nat) : a + (b * c) = (b * c) + a := by
   simp only [
   Nat.mul_add,
