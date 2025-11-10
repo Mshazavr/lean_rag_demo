@@ -12,12 +12,13 @@ logging.getLogger("transformers").setLevel(logging.ERROR)
 
 # EMBEDDING_MODEL = "math-similarity/Bert-MLM_arXiv-MP-class_zbMath"
 EMBEDDING_MODEL = "kaiyuy/leandojo-lean4-retriever-byt5-small"
+QUERY_TEXT = "theorem simple (a b c : Nat) : a + (b * c) = (b * c) + a := by"
+# QUERY_TEXT = "theorem simple (a b : Nat) : a ^ (b + 2) = a ^ b * a * a := by"
 
 LEAN_SOURCE_NAME = "nat_basic.lean"
 THEOREM_NAMES_OUT = "nat_basic_names.txt"
 THEOREM_TEXTS_OUT = "nat_basic_texts.txt"
 
-QUERY_TEXT = "theorem simple (a b c : Nat) : a + (b * c) = (b * c) + a := by"
 
 def log(text: str):
     OKCYAN = '\033[96m'
